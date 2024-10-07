@@ -11,3 +11,6 @@ Route::get('/login', function () {
 Route::get('/dashboard', function () {
     return view('user.dashboard');
 });
+Route::get('/course', function () {
+    return view('admin.course');
+});
