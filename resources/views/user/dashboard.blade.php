@@ -5,11 +5,11 @@
 
 @section('content')
     @include('user.nav')
-    <div class="h-[550px] bg-black mx-6 px-20 flex justify-center items-center rounded-lg mt-1">
-        <div class="flex justify-between">
-            <div>
-                <h2 class="text-white text-2xl font-wie">OverView</h2>
-                <div class="bg-[#1c1f24] w-[60vw] px-10 py-8 rounded-2xl mt-3">
+    <div class="h-[550px] bg-black mx-6 px-20 flex justify-between items-center rounded-lg mt-1">
+        <div class="flex justify-around gap-5 w-full">
+            <div class="w-full">
+                <h2 class="text-white text-2xl font-semibold">OverView</h2>
+                <div class="bg-[#1c1f24]  px-10 py-8 rounded-2xl mt-3">
                     <div class="flex gap-10 w-full">
                         <div class="w-[500px]">
                             <img class="w-[120px] h-[120px] rounded-full"
@@ -79,12 +79,57 @@
                 </div>
             </div>
 
-            <div>
-                <h2 class="text-white text-2xl font-wie">My Progress</h2>
-                <div class="w-full">
+            <div class="h-full relative">
+                <h2 class="text-white text-2xl font-semibold">My Progress</h2>
+                <div class="bg-[#1c1f24]  min-h-[395px] px-10  rounded-2xl mt-3 flex justify-center   relative w-[400px]">
+                    <div class="w-[300px] " id="progressChart"></div>
+                    <div>
 
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('js')
+    <script>
+        window.onload = function() {
+
+            var chart3 = new CanvasJS.Chart("progressChart", {
+                animationEnabled: true,
+                backgroundColor: "transparent",
+                data: [{
+                    type: "doughnut",
+                    startAngle: 60,
+
+                    //innerRadius: 60,
+                    indexLabelFontColor: "transparent",
+                    indexLabelPlacement: "inside",
+                    dataPoints: [{
+                            y: 10,
+                            color: "#fe8949",
+                            label: "Pending"
+                        },
+                        {
+                            y: 20,
+                            color: "#417DFC",
+                            label: "Processing"
+                        },
+                        {
+                            y: 50,
+                            color: "#fbbc1d",
+                            label: "Approved"
+                        },
+
+                    ]
+                }]
+            });
+
+            chart3.render();
+
+        }
+    </script>
 @endsection
